@@ -1,6 +1,10 @@
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Azure.Extensions.AspNetCore.Configuration.Secrets;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+using FoodstuffsRating.Api.Interceptors;
 using FoodstuffsRating.Api.Middlewares;
 using FoodstuffsRating.Api.OAuth;
 using FoodstuffsRating.Api.Options;
@@ -16,8 +20,25 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Azure KeyVault
+builder.Host.ConfigureAppConfiguration((_, config) =>
+{
+    var settings = config.Build();
+
+    string keyVaultEndpoint = settings["AzureKeyVaultEndpoint"];
+
+    var secretClient = new SecretClient(new Uri(keyVaultEndpoint),
+        new DefaultAzureCredential());
+
+    config.AddAzureKeyVault(secretClient, new KeyVaultSecretManager());
+});
+
 var services = builder.Services;
 var configuration = builder.Configuration;
+
+
+// AppInsight
+builder.Services.AddApplicationInsightsTelemetry();
 
 // Add services to the container.
 
@@ -30,6 +51,11 @@ AutoMapperConfiguration.Configure(services);
 
 
 // options
+services.AddOptions<DatabaseOptions>()
+    .Configure(o => configuration.GetSection("Backend:Database").Bind(o))
+    .ValidateDataAnnotations()
+    .ValidateOnStart();
+
 services.AddOptions<AuthOptions>()
     .Configure(o => configuration.GetSection("Authentication:Own").Bind(o))
     .ValidateDataAnnotations()
@@ -80,8 +106,23 @@ services
 
 services.AddDbContext<BackendDbContext>(options =>
 {
-    options.UseSqlServer(configuration.GetValue<string>("Backend:Database:ConnectionString"));
+    var dbOptions = configuration.GetSection("Backend:Database").Get<DatabaseOptions>();
+    var connectionString = dbOptions.ConnectionString;
+
+    options.UseSqlServer(connectionString, s =>
+    {
+        s.CommandTimeout(dbOptions.TimeoutInSeconds);
+        if (dbOptions.RetryCount > 0)
+        {
+            s.EnableRetryOnFailure(dbOptions.RetryCount);
+        }
+    });
+    if (dbOptions.UseAzureAccessToken)
+    {
+        options.AddInterceptors(new AzureDbConnectionInterceptor());
+    }
 });
+
 if (builder.Environment.IsDevelopment())
 {
     services.AddDatabaseDeveloperPageExceptionFilter();
@@ -105,6 +146,9 @@ services.AddTransient<IPasswordValidator, PasswordValidator>();
 services.AddTransient(typeof(IBackendRepository<>), typeof(BackendRepository<>));
 services.AddScoped<IUserManager, UserManager>();
 
+// healthchecks
+services.AddHealthChecks()
+    .AddDbContextCheck<BackendDbContext>(name: "Sql-BackendDb");
 
 //
 var app = builder.Build();
@@ -127,7 +171,7 @@ app.UseMiddleware<CustomExceptionHandlerMiddleware>();
 
 app.MapControllers();
 
-// app.UseHealthChecks("/healthcheck");// TODO:
+app.UseHealthChecks("/healthcheck");
 
 // apply EF Core db migrations
 using (var scope = app.Services.CreateAsyncScope())
