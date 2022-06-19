@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodstuffsRating.Api", "FoodstuffsRating.Api\FoodstuffsRating.Api.csproj", "{FFFCB79E-7CEF-42A9-8374-6AC74FCA7BE0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodstuffsRating.Data.Dal", "FoodstuffsRating.Data.Dal\FoodstuffsRating.Data.Dal.csproj", "{F4F83F5D-2A70-40ED-9DCB-0C58E60811E0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodstuffsRating.Data.Models", "FoodstuffsRating.Data.Models\FoodstuffsRating.Data.Models.csproj", "{E72C0B44-8B61-43F0-9F35-4D7969F94A04}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F3EC6277-D683-4312-B24E-6716148DACC2}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodstuffsRating.Services", "FoodstuffsRating.Services\FoodstuffsRating.Services.csproj", "{4AA8EAF1-8F54-4607-A7F2-08E3D8107935}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFFCB79E-7CEF-42A9-8374-6AC74FCA7BE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFFCB79E-7CEF-42A9-8374-6AC74FCA7BE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFFCB79E-7CEF-42A9-8374-6AC74FCA7BE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFFCB79E-7CEF-42A9-8374-6AC74FCA7BE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4F83F5D-2A70-40ED-9DCB-0C58E60811E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4F83F5D-2A70-40ED-9DCB-0C58E60811E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4F83F5D-2A70-40ED-9DCB-0C58E60811E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4F83F5D-2A70-40ED-9DCB-0C58E60811E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E72C0B44-8B61-43F0-9F35-4D7969F94A04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E72C0B44-8B61-43F0-9F35-4D7969F94A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E72C0B44-8B61-43F0-9F35-4D7969F94A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E72C0B44-8B61-43F0-9F35-4D7969F94A04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AA8EAF1-8F54-4607-A7F2-08E3D8107935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AA8EAF1-8F54-4607-A7F2-08E3D8107935}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AA8EAF1-8F54-4607-A7F2-08E3D8107935}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AA8EAF1-8F54-4607-A7F2-08E3D8107935}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A6DCF5DA-75FB-4A30-99FF-DF88835F9C3A}
+	EndGlobalSection
+EndGlobal
