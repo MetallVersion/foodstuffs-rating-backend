@@ -1,10 +1,14 @@
-﻿namespace FoodstuffsRating.Data.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace FoodstuffsRating.Data.Models
 {
-    public class User : ITrackableDate
+    public sealed class User : ITrackableDate
     {
         public User()
         {
             this.RefreshTokens = new HashSet<UserRefreshToken>();
+            this.ExternalLogins = new List<UserExternalLogin>();
         }
 
         public Guid Id { get; set; }
@@ -20,7 +24,7 @@
         public DateTime CreatedAtUtc { get; set; }
         public DateTime LastUpdatedAtUtc { get; set; }
 
-        public virtual ICollection<UserRefreshToken> RefreshTokens { get; set; }
-        
+        public ICollection<UserRefreshToken> RefreshTokens { get; set; }
+        public ICollection<UserExternalLogin> ExternalLogins { get; set; }
     }
 }

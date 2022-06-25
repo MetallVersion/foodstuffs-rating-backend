@@ -15,7 +15,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodstuffsRating.Services", "FoodstuffsRating.Services\FoodstuffsRating.Services.csproj", "{4AA8EAF1-8F54-4607-A7F2-08E3D8107935}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodstuffsRating.Services", "FoodstuffsRating.Services\FoodstuffsRating.Services.csproj", "{4AA8EAF1-8F54-4607-A7F2-08E3D8107935}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodstuffsRating.Models", "FoodstuffsRating.Models\FoodstuffsRating.Models.csproj", "{1D829FF1-FD7A-497C-B934-FE0DBEF561A4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodstuffsRating.Dto", "FoodstuffsRating.Dto\FoodstuffsRating.Dto.csproj", "{2EF31F32-6137-4E85-9B52-6AB98016882E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodstuffsRating.Common", "FoodstuffsRating.Common\FoodstuffsRating.Common.csproj", "{3FA7D359-49E2-4E56-87D7-8F9ACEDA7141}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodstuffsRating.Api.Tests", "FoodstuffsRating.Api.Tests\FoodstuffsRating.Api.Tests.csproj", "{4CDD8765-FBD7-4347-89C4-825297B104DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D295BEA9-9ED1-4E1F-A743-78CBC370BC20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodstuffsRating.Services.Tests", "FoodstuffsRating.Services.Tests\FoodstuffsRating.Services.Tests.csproj", "{5309D4B1-E34F-45BF-BE9A-5BF5FD6CEE70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +51,33 @@ Global
 		{4AA8EAF1-8F54-4607-A7F2-08E3D8107935}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AA8EAF1-8F54-4607-A7F2-08E3D8107935}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AA8EAF1-8F54-4607-A7F2-08E3D8107935}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D829FF1-FD7A-497C-B934-FE0DBEF561A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D829FF1-FD7A-497C-B934-FE0DBEF561A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D829FF1-FD7A-497C-B934-FE0DBEF561A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D829FF1-FD7A-497C-B934-FE0DBEF561A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EF31F32-6137-4E85-9B52-6AB98016882E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EF31F32-6137-4E85-9B52-6AB98016882E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EF31F32-6137-4E85-9B52-6AB98016882E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EF31F32-6137-4E85-9B52-6AB98016882E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FA7D359-49E2-4E56-87D7-8F9ACEDA7141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FA7D359-49E2-4E56-87D7-8F9ACEDA7141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FA7D359-49E2-4E56-87D7-8F9ACEDA7141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FA7D359-49E2-4E56-87D7-8F9ACEDA7141}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CDD8765-FBD7-4347-89C4-825297B104DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CDD8765-FBD7-4347-89C4-825297B104DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CDD8765-FBD7-4347-89C4-825297B104DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CDD8765-FBD7-4347-89C4-825297B104DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5309D4B1-E34F-45BF-BE9A-5BF5FD6CEE70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5309D4B1-E34F-45BF-BE9A-5BF5FD6CEE70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5309D4B1-E34F-45BF-BE9A-5BF5FD6CEE70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5309D4B1-E34F-45BF-BE9A-5BF5FD6CEE70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4CDD8765-FBD7-4347-89C4-825297B104DF} = {D295BEA9-9ED1-4E1F-A743-78CBC370BC20}
+		{5309D4B1-E34F-45BF-BE9A-5BF5FD6CEE70} = {D295BEA9-9ED1-4E1F-A743-78CBC370BC20}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A6DCF5DA-75FB-4A30-99FF-DF88835F9C3A}

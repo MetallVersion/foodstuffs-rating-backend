@@ -1,54 +1,49 @@
-﻿using AutoMapper;
-using FoodstuffsRating.Api.Dto;
-using FoodstuffsRating.Api.Helpers;
-using FoodstuffsRating.Api.Services;
-using FoodstuffsRating.Data.Dal;
-using FoodstuffsRating.Data.Models;
+﻿using System.Threading.Tasks;
+using FoodstuffsRating.Dto;
+using FoodstuffsRating.Services;
+using FoodstuffsRating.Services.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace FoodstuffsRating.Api.Controllers
 {
+    [Authorize]
     [ApiController]
-    [Route("user")]
+    [Route($"{ApiPrefix.Url}/user")]
     public class UserController : ControllerBase
     {
-        private readonly IUserManager _userManager;
-        private readonly IBackendRepository<User> _userRepository;
-        private readonly IMapper _mapper;
+        private readonly IUserService _userService;
+        private readonly ILogger<UserController> _logger;
 
-        public UserController(IUserManager userManager,
-            IBackendRepository<User> userRepository,
-            IMapper mapper)
+        public UserController(IUserService userService,
+            ILogger<UserController> logger)
         {
-            this._userManager = userManager;
-            this._userRepository = userRepository;
-            this._mapper = mapper;
+            this._userService = userService;
+            this._logger = logger;
         }
 
-        [AllowAnonymous]
-        [HttpPost]
-        [Route("register")]
-        public async Task<IActionResult> Register(RegisterUserRequest request)
-        {
-            var createdUser = await this._userManager.RegisterAsync(request);
-            
-            return this.Ok();
-        }
-
-        [Authorize]
         [HttpGet]
         [Route("profile")]
         public async Task<IActionResult> GetProfile()
         {
-            var userId = this.User.Claims.GetUserId();
-            var user = await this._userRepository.GetAsync(x => x.Id == userId);
-            if (user == null)
+            var userId = this.User.GetUserIdAsGuid();
+            var profile = await this._userService.GetUserProfileAsync(userId);
+            if (profile == null)
             {
-                return this.NotFound();
+                return this.Unauthorized();
             }
 
-            var profile = this._mapper.Map<UserProfile>(user);
+            return this.Ok(profile);
+        }
+
+        [HttpPut]
+        [Route("profile")]
+        public async Task<IActionResult> UpdateProfile(UserProfileUpdateRequest request)
+        {
+            var userId = this.User.GetUserIdAsGuid();
+
+            var profile = await this._userService.UpdateUserProfileAsync(userId, request);
 
             return this.Ok(profile);
         }

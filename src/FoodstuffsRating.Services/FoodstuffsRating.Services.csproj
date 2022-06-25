@@ -1,9 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="6.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FoodstuffsRating.Data.Dal\FoodstuffsRating.Data.Dal.csproj" />
+    <ProjectReference Include="..\FoodstuffsRating.Dto\FoodstuffsRating.Dto.csproj" />
+    <ProjectReference Include="..\FoodstuffsRating.Models\FoodstuffsRating.Models.csproj" />
+  </ItemGroup>
 
 </Project>

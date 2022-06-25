@@ -1,7 +1,13 @@
-﻿using System.Net;
-using FoodstuffsRating.Services.Exceptions;
+﻿using System;
+using System.Net;
+using System.Threading.Tasks;
+using FoodstuffsRating.Models.Exceptions;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace FoodstuffsRating.Api.Middlewares
 {
@@ -23,7 +29,7 @@ namespace FoodstuffsRating.Api.Middlewares
             {
                 await this._next(context);
             }
-            catch (BaseApiException apiException)
+            catch (ApiException apiException)
             {
                 logger.LogWarning(apiException, apiException.Message);
 

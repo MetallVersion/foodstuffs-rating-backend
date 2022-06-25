@@ -1,16 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
+	<ImplicitUsings>disable</ImplicitUsings>
+	<Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.2.2" />
-    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Google.Apis.Auth.AspNetCore3" Version="1.57.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.20.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.6" />
@@ -28,9 +27,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FoodstuffsRating.Data.Dal\FoodstuffsRating.Data.Dal.csproj" />
-    <ProjectReference Include="..\FoodstuffsRating.Data.Models\FoodstuffsRating.Data.Models.csproj" />
+    <ProjectReference Include="..\FoodstuffsRating.Models\FoodstuffsRating.Models.csproj" />
     <ProjectReference Include="..\FoodstuffsRating.Services\FoodstuffsRating.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="StaticFiles\google_popup.html">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\google_redirect.html">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

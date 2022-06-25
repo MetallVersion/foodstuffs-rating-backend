@@ -1,6 +1,8 @@
-﻿namespace FoodstuffsRating.Data.Models
+﻿using System;
+
+namespace FoodstuffsRating.Data.Models
 {
-    public class UserRefreshToken : ITrackableDate
+    public sealed class UserRefreshToken : ITrackableDate
     {
         public long Id { get; set; }
         public Guid UserId { get; set; }
@@ -10,6 +12,6 @@
         public DateTime CreatedAtUtc { get; set; }
         public DateTime LastUpdatedAtUtc { get; set; }
 
-        public virtual User User { get; set; } = null!;
+        public User User { get; set; } = null!;
     }
 }

@@ -343,3 +343,6 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/src/FoodstuffsRating.Api/Properties/ServiceDependencies/foodstuffsrating-api-test - Web Deploy/profile.arm.json
+/src/FoodstuffsRating.Api/StaticFiles/google_redirect.html
+/src/FoodstuffsRating.Api/StaticFiles/google_popup.html

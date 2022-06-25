@@ -63,6 +63,32 @@ namespace FoodstuffsRating.Data.Dal.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
+            modelBuilder.Entity("FoodstuffsRating.Data.Models.UserExternalLogin", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ExternalUserId")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("LastUpdatedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("LoginProvider", "ExternalUserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserExternalLogins", (string)null);
+                });
+
             modelBuilder.Entity("FoodstuffsRating.Data.Models.UserRefreshToken", b =>
                 {
                     b.Property<long>("Id")
@@ -98,6 +124,17 @@ namespace FoodstuffsRating.Data.Dal.Migrations
                     b.ToTable("UserRefreshTokens", (string)null);
                 });
 
+            modelBuilder.Entity("FoodstuffsRating.Data.Models.UserExternalLogin", b =>
+                {
+                    b.HasOne("FoodstuffsRating.Data.Models.User", "User")
+                        .WithMany("ExternalLogins")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("FoodstuffsRating.Data.Models.UserRefreshToken", b =>
                 {
                     b.HasOne("FoodstuffsRating.Data.Models.User", "User")
@@ -111,6 +148,8 @@ namespace FoodstuffsRating.Data.Dal.Migrations
 
             modelBuilder.Entity("FoodstuffsRating.Data.Models.User", b =>
                 {
+                    b.Navigation("ExternalLogins");
+
                     b.Navigation("RefreshTokens");
                 });
 #pragma warning restore 612, 618

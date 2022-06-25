@@ -1,4 +1,6 @@
-﻿namespace FoodstuffsRating.Data.Models
+﻿using System;
+
+namespace FoodstuffsRating.Data.Models
 {
     public interface ITrackableCreationDate
     {

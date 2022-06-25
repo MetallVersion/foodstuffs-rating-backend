@@ -1,4 +1,9 @@
-﻿using System.Linq.Expressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 // NOTE: to use LinqKit method AsExpandable with async - we should upgrade version to LinqKit.Microsoft.EntityFrameworkCore which depends on net6.0
@@ -63,6 +68,7 @@ namespace FoodstuffsRating.Data.Dal
         {
             var query = this.DbSet.Where(where);
 
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse, because developer can manually provide null for params
             if (includes != null)
             {
                 foreach (var expression in includes)
